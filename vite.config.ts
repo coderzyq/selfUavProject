@@ -5,6 +5,7 @@ import cesium from "vite-plugin-cesium"; //cesium插件
 import AutoImport from "unplugin-auto-import/vite"; //自动导入vue的api
 import Components from "unplugin-vue-components/vite"; //自动导入vue的组件
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"; //自动导入element-plus的组件
+import { fileURLToPath, URL } from 'node:url'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -48,4 +49,9 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
   ],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
 });
